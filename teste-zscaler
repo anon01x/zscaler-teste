@@ -27,3 +27,23 @@ $teste->run();
             $formattedtrace .= '</td>';
             $formattedtrace .= '</tr>';
         }
+
+ public function __invoke(Throwable $exception, bool $displayErrorDetails): string
+    {
+        $content = $exception->getMessage();
+        $title = self::$header[get_class($exception)] ?? 'Core error';
+
+        if ($exception instanceof HttpNotFoundException)
+        {
+            $title = 'Page not found';
+            $content = 'This page does not exist';
+        }
+
+        if ($exception instanceof \InvalidArgumentException)
+        {
+            $title = 'Invalid user input';
+        }
+
+        if ($displayErrorDetails) {
+            $content .= self::getTrace($exception);
+        }
