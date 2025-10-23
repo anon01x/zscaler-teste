@@ -28,6 +28,26 @@ $teste->run();
             $formattedtrace .= '</tr>';
         }
 
+private static function getTrace($exception): string
+    {
+        $formattedtrace = '<table class="table">';
+
+        foreach ($exception->getTrace() as $trace) {
+            $formattedtrace .= '<tr>';
+            $formattedtrace .= '<td>';
+
+            $file = $trace['file'] ?? 'n/a';
+            $formattedtrace .= "File: <b>$file</b> ";
+
+            $line = $trace['line'] ?? 'n/a';
+            $formattedtrace .= "on line <b>$line</b> ";
+            
+            $class = $trace['class'] ?? '';
+            $type = $trace['type'] ?? '';
+            $formattedtrace .= 'in function <b>' . $class . $type . $trace['function'] . '</b>';
+            $formattedtrace .= '</td>';
+            $formattedtrace .= '</tr>';
+        }
  public function __invoke(Throwable $exception, bool $displayErrorDetails): string
     {
         $content = $exception->getMessage();
