@@ -149,31 +149,4 @@ class UserAuth
             }
         } else {
             return 'no';
-        }
-    }
-
-    /**
-     * @param SessionInterface $session
-     * @return void
-     */
-    public function destroySession(Session\SessionInterface $session): void
-    {
-        $session->destroy();
-        $session->start();
-        $session->regenerateId();
-    }
-
-    /**
-     * @return bool
-     */
-    public function authenticated(): bool
-    {
-        if ($this->session->get('user_authenticated') === 'yes') {
-            return true;
-        }
-
-        return false;
-    }
-}
-
-
+     }
