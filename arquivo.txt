@@ -144,9 +144,3 @@ class UserAuth
         if ($user) {
             if (password_verify($password, $user->getPasswordHash())) {
                 return 'yes';
-            } else {
-                return 'no';
-            }
-        } else {
-            return 'no';
-     }
