@@ -140,7 +140,3 @@ class UserAuth
     {
         $username = trim($username, ' ');
         $user = $this->userTable->findByName($username);
-
-        if ($user) {
-            if (password_verify($password, $user->getPasswordHash())) {
-                return 'yes';
